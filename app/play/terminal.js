@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {
   Text,
+  ScrollView,
   View,
 } from 'react-native';
 
@@ -130,6 +131,16 @@ export class Line extends React.Component {
 class Terminal extends React.Component {
   constructor(props) {
     super(props);
+
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.refs.scroll.scrollToEnd();
   }
 
   render() {
@@ -146,13 +157,15 @@ class Terminal extends React.Component {
     };
 
     return (
-      <Text style={style}>
-        {_.map(lines, line => {
-          return (
-            <Line key={line.id} sequences={line.sequences} />
-          );
-        })}
-      </Text>
+      <ScrollView ref="scroll" {...this.props} onContentSizeChange={this.scrollToBottom}>
+        <Text style={style}>
+          {_.map(lines, line => {
+            return (
+              <Line key={line.id} sequences={line.sequences} />
+            );
+          })}
+        </Text>
+      </ScrollView>
     );
   }
 }

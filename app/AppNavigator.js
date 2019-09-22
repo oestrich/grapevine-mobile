@@ -3,7 +3,6 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
@@ -34,12 +33,12 @@ class ClientScreen extends React.Component {
       <Fragment>
         <StatusBar barStyle="light-content" backgroundColor="#000000" />
         <SocketProvider game="DevGame" sessionToken="SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAkOTZkYzllNGItNTY1NS00OTczLWE3ZWYtN2FmNDE4ZGM3NmNhZAAGc2lnbmVkbgYAkId9Wm0B.X_4qtqLgkVbFSVMHBSM5O-sLqhIGJaCiUIy56i3Fpc8">
-          <SafeAreaView style={{flex: 1, backgroundColor: "#000000"}}>
-            <ScrollView style={{backgroundColor: "#000000", flexGrow: 1}}>
-              <Terminal />
-            </ScrollView>
-            <Prompt />
-          </SafeAreaView>
+          <KeyboardAvoidingView enabled behavior="padding" style={{flex: 1}} keyboardVerticalOffset={100}>
+            <SafeAreaView style={{flex: 1, justifyContent: "flex-end", backgroundColor: "#000000"}}>
+              <Terminal style={{backgroundColor: "#000000", flex: 2, flexGrow: 1}}/>
+              <Prompt style={{flex: 1}} />
+            </SafeAreaView>
+          </KeyboardAvoidingView>
         </SocketProvider>
       </Fragment>
     );
