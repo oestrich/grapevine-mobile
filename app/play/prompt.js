@@ -54,7 +54,7 @@ class Prompt extends React.Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#444444"}}>
+      <View {...this.props} style={{backgroundColor: "#444444"}}>
         <TextInput
           style={{margin: 10, color: "#F5F7FA", fontFamily: "Menlo", fontSize: 16}}
           autoCapitalize="none"
