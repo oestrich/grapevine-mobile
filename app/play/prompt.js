@@ -22,14 +22,8 @@ class Prompt extends React.Component {
   constructor(props) {
     super(props);
 
-    this.buttonSendMessage = this.buttonSendMessage.bind(this);
     this.sendText = this.sendText.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
-  }
-
-  buttonSendMessage(e) {
-    e.preventDefault();
-    this.sendMessage();
   }
 
   sendText() {
@@ -43,7 +37,7 @@ class Prompt extends React.Component {
   sendMessage() {
     const {socket} = this.context;
     this.props.socketInput(`${this.props.displayText}\n`);
-    this.props.promptHistoryAdd();
+    this.props.promptClear();
     socket.send(`${this.props.displayText}\n`);
   }
 
@@ -59,18 +53,18 @@ class Prompt extends React.Component {
   }
 
   render() {
-    let value = this.props.displayText === undefined ? "" : this.props.displayText;
-
     return (
-      <View style={{flexDirection: 'row'}}>
-        <TextInput style={{width: "100%", color: "#F5F7FA", fontFamily: "Menlo"}}
+      <View style={{backgroundColor: "#444444"}}>
+        <TextInput
+          style={{margin: 10, color: "#F5F7FA", fontFamily: "Menlo", fontSize: 16}}
           autoCapitalize="none"
-          value={value}
+          autoCorrect={false}
+          value={this.props.displayText}
+          blurOnSubmit={false}
           selectTextOnFocus={true}
           onChange={this.onTextChange}
           type={this.props.promptType}
           onSubmitEditing={this.sendText} />
-        <Button title="Send" onClick={this.buttonSendMessage} />
       </View>
     );
   }

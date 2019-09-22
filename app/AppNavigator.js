@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {
+  KeyboardAvoidingView,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -32,12 +33,14 @@ class ClientScreen extends React.Component {
     return (
       <Fragment>
         <StatusBar barStyle="light-content" backgroundColor="#000000" />
-        <SocketProvider game="DevGame" sessionToken="SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAkOTZkYzllNGItNTY1NS00OTczLWE3ZWYtN2FmNDE4ZGM3NmNhZAAGc2lnbmVkbgYAE6mtTm0B.G9mijmqNJ1myGXzdV4CTUvIj0CkRQbLjUsFbBfYMdb4">
+        <SocketProvider game="DevGame" sessionToken="SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAkOTZkYzllNGItNTY1NS00OTczLWE3ZWYtN2FmNDE4ZGM3NmNhZAAGc2lnbmVkbgYAkId9Wm0B.X_4qtqLgkVbFSVMHBSM5O-sLqhIGJaCiUIy56i3Fpc8">
           <SafeAreaView>
-            <ScrollView contentInsetAdjustmentBehavior="automatic" style={{backgroundColor: "#000000"}}>
-              <Terminal />
+            <KeyboardAvoidingView>
+              <ScrollView style={{flexGrow: 1}}>
+                <Terminal />
+              </ScrollView>
               <Prompt />
-            </ScrollView>
+            </KeyboardAvoidingView>
           </SafeAreaView>
         </SocketProvider>
       </Fragment>
